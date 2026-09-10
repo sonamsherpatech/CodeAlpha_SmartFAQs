@@ -1,0 +1,110 @@
+[
+    {
+        "id": 1,
+        "category": "Admissions",
+        "question": "What are the general admission requirements?",
+        "patterns": [
+            "What do I need to apply?",
+            "Admission criteria for undergraduate programs",
+            "What are the eligibility requirements for admission?",
+            "How can I get admitted into the university?"
+        ],
+        "answer": "Undergraduate applicants require a high school diploma with a minimum GPA of 3.0 (or equivalent), official academic transcripts, letters of recommendation, and standard English proficiency test scores (TOEFL/IELTS for international applicants)."
+    },
+    {
+        "id": 2,
+        "category": "Admissions",
+        "question": "What is the application deadline?",
+        "patterns": [
+            "When is the last date to apply?",
+            "Application deadlines for fall and spring semesters",
+            "When do applications close?",
+            "Can I submit a late application?"
+        ],
+        "answer": "Fall semester regular applications close on January 15th (Early Decision on November 1st). Spring semester applications close on October 1st. Late applications may be reviewed on a rolling basis depending on seat availability."
+    },
+    {
+        "id": 3,
+        "category": "Tuition & Fees",
+        "question": "How much is the annual tuition fee?",
+        "patterns": [
+            "What are the college fees?",
+            "Tuition cost per semester",
+            "How much does it cost to study here?",
+            "Fee structure for undergraduate and graduate courses"
+        ],
+        "answer": "Undergraduate tuition is approximately $18,500 per academic year for in-state students and $28,000 for out-of-state/international students. Graduate tuition varies by program (typically $22,000 - $34,000 annually)."
+    },
+    {
+        "id": 4,
+        "category": "Scholarships & Financial Aid",
+        "question": "Are scholarships available for students?",
+        "patterns": [
+            "Can I get a scholarship?",
+            "Financial aid and grants options",
+            "How to apply for merit scholarships?",
+            "Do you provide funding or fee waivers for students?"
+        ],
+        "answer": "Yes! We offer Merit-Based Scholarships covering up to 100% of tuition, Need-Based Financial Aid, and Graduate Research/Teaching Assistantships. You can apply via the Financial Aid Portal after submitting your main application."
+    },
+    {
+        "id": 5,
+        "category": "Housing & Campus Life",
+        "question": "Is on-campus accommodation provided?",
+        "patterns": [
+            "Hostel facilities and dorms",
+            "Do freshmen have to live on campus?",
+            "What are the campus housing options and costs?",
+            "How do I apply for a dorm room?"
+        ],
+        "answer": "Yes, on-campus dormitory housing is guaranteed for all first-year undergraduate students. Housing options range from traditional shared rooms to apartment-style suites, costing between $6,000 to $9,000 per academic year including meal plans."
+    },
+    {
+        "id": 6,
+        "category": "International Students",
+        "question": "What are the requirements for international students?",
+        "patterns": [
+            "I am a foreign student, how can I apply?",
+            "Visa sponsorship and I-20 form requirements",
+            "English proficiency requirements TOEFL IELTS",
+            "International student admission process"
+        ],
+        "answer": "International students must submit certified English-translated transcripts, proof of English proficiency (Minimum TOEFL iBT 80 or IELTS 6.5), a valid passport copy, and a Financial Guarantee Statement for I-20 / student visa issuance."
+    },
+    {
+        "id": 7,
+        "category": "Academics",
+        "question": "What degree programs and majors are offered?",
+        "patterns": [
+            "List of courses offered",
+            "What undergraduate majors do you have?",
+            "Do you offer computer science or engineering programs?",
+            "Available masters and doctoral degrees"
+        ],
+        "answer": "We offer over 60 undergraduate majors and 40 graduate programs across Computer Science, Data Science, Business Administration, Engineering, Health Sciences, Arts, and Humanities."
+    },
+    {
+        "id": 8,
+        "category": "Application Status",
+        "question": "How can I check my application status?",
+        "patterns": [
+            "Where can I track my admission application?",
+            "When will I receive the admission decision letter?",
+            "Check application status portal",
+            "Has my application been accepted?"
+        ],
+        "answer": "You can track your application in real-time by logging into the Applicant Portal using your registered email and Application ID. Decision letters are typically released 4-6 weeks after the deadline."
+    },
+    {
+        "id": 9,
+        "category": "Contact",
+        "question": "How do I contact the admissions office?",
+        "patterns": [
+            "Admissions office email and phone number",
+            "Can I speak with an admission counselor?",
+            "University contact information and office hours",
+            "Where is the admissions office located?"
+        ],
+        "answer": "You can reach the Admissions Office via email at admissions@university.edu or phone at +1 (800) 555-0199. Office hours are Monday through Friday, 9:00 AM to 5:00 PM."
+    }
+]
