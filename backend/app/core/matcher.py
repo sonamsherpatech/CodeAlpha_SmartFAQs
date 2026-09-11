@@ -65,4 +65,68 @@ class FAQMatcher:
 
         # Fit TF-IDF matrix
         self.tfidf_matrix = self.vectorizer.fit_transform(self.corpus_cleaned)
-        
+
+    def check_small_talk(self, query: str) -> Optional[str]:
+        q_lower = query.lower().strip()
+        for _, intent_data in SMALL_TALK.items():
+            for kw in intent_data["keywords"]:
+                if kw in q_lower:
+                    return intent_data["reply"]
+        return None
+
+    def get_suggestions(self, count: int = 3) -> List[str]:
+        return [faq["question"] for faq in self.faqs[:count]]
+
+    def match(self, user_query: str) -> Dict[str, Any]:
+        """
+        Processses user query, finds best matching FAQ, and returns response payload.
+        """
+        # 1. Check for small talk / greetings first
+        small_talk_reply = self.check_small_talk(user_query)
+        if small_talk_reply:
+            return {
+                "answer": small_talk_reply,
+                "confidence": 1.0,
+                "matched_question": None,
+                "category": "Small Talk",
+                "suggestions": self.get_suggestions(3)
+            }
+
+        # 2. Preprocess user query
+        cleaned_query = preprocess_text(user_query)
+        if not cleaned_query:
+            return {
+                "answer": "Cloud you please provide more details? I'm here to help with admissions, fees, and campus questions.",
+                "confidence": 0.0,
+                "matched_question": None,
+                "category": None,
+                "suggestions": self.get_suggestions(3)
+            }
+
+        # 3. Vectorize and compute Cosine similarity
+        query_vector = self.vectorizer.transform([cleaned_query])
+        similarities = cosine_similarity(query_vector, self.tfidf_matrix).flatten()
+
+        best_index = similarities.argmax()
+        best_score = float(similarities[best_index])
+
+        # 4. Check confidence threshold
+        if best_score >= SIMILARITY_THRESHOLD:
+            faq_idx = self.faq_index_map[best_index]
+            matched_faq = self.faqs[faq_idx]
+            return {
+                "answer": matched_faq["answer"],
+                "confidence": round(best_score, 2),
+                "matched_question": matched_faq["question"],
+                "category": matched_faq.get("category", "General"),
+                "suggestions": [f["question"] for f in self.faqs if f["id"] != matched_faq["id"]][:3]
+            }
+        else:
+            # Fallback when no good match is found
+            return {
+                "answer": "I'm sorry, I couldn't find a direct answer to that question. You may contact the Admissions Office at admissions@university.edu or try asking about one of the topics below:",
+                "confidence": round(best_score, 2),
+                "matched_question": None,
+                "category": None,
+                "suggestions": self.get_suggestions(4)
+            }
