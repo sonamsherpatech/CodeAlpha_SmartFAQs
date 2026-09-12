@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from typing import Dict, Any, List, Tuple, Optional
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -68,9 +69,21 @@ class FAQMatcher:
 
     def check_small_talk(self, query: str) -> Optional[str]:
         q_lower = query.lower().strip()
+        # Extracting individual words
+        words = set(re.findall(r'\b[a-z]+\b', q_lower))
+
         for _, intent_data in SMALL_TALK.items():
             for kw in intent_data["keywords"]:
-                if kw in q_lower:
+                # If keyword is multi-word
+                if " " in kw:
+                    if re.search(r'\b' + re.escape(kw) + r'\b', q_lower):
+                        return intent_data["reply"]
+                # If keyword is a single word
+                elif kw in words:
+                    # If the query contains meaningful question words, prioritize FAQ search over a casual greeting
+                    question_words = {"scholarship", "tution", "fee", "cost", "admission", "deadline", "housing", "requirement", "apply"}
+                    if words.intersection(question_words):
+                        return None
                     return intent_data["reply"]
         return None
 
